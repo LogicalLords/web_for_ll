@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LOGICAL LORDS design tokens (kept in sync with src/lib/tokens.js)
+   ============================================================ */
+@theme {
+  --color-void: #0a0c11;
+  --color-panel: #14171f;
+  --color-panel2: #191d27;
+  --color-line: #2a2e3a;
+
+  --color-avengers: #e0202c;
+  --color-gold: #c9a24b;
+  --color-ink: #eceef3;
+  --color-muted: #8b92a3;
+
+  /* per-hero accents */
+  --color-captain: #3e6fb0;
+  --color-thor: #5aa9e6;
+  --color-hulk: #4caf6d;
+  --color-widow: #b23a48;
+  --color-hawkeye: #7b5ea7;
+
+  --font-display: "Anton", "Arial Narrow", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", "Cascadia Mono", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-avengers);
+    color: var(--color-ink);
+  }
+
+  /* visible, consistent keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------- shared visual helpers ---------- */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hologram-panel {
+  position: relative;
+  border: 1px solid var(--color-line);
+  background: linear-gradient(165deg, rgba(25, 29, 39, 0.96), rgba(15, 18, 26, 0.96));
+}
+.hologram-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(130% 65% at 50% 0%, rgba(201, 162, 75, 0.06), transparent 55%);
+}
+
+.corner-box::before,
+.corner-box::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  z-index: 3;
+  border-color: var(--color-gold);
+  pointer-events: none;
+}
+.corner-box::before {
+  top: 6px;
+  left: 6px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.corner-box::after {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(236, 238, 243, 0.045) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(236, 238, 243, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(236, 238, 243, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.5);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 6px rgba(201, 162, 75, 0);
+  }
+}
+
+.scroll-pip {
+  animation: scroll-pip 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes scroll-pip {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
