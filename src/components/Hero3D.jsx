@@ -110,7 +110,6 @@ export default function Hero3D() {
   }, []);
 
   const letterCls = deferred ? 'hero-letter' : 'hero-letter opacity-0';
-  const fadeCls = (extra = '') => `hero-fade ${deferred ? '' : 'opacity-0'} ${extra}`;
 
   return (
     <section
