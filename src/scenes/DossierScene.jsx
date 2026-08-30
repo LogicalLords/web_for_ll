@@ -187,7 +187,7 @@ export default function DossierScene({ member, tiltRef, motion }) {
     }
 
     if (spin.current && motion) spin.current.rotation.y += delta * 1.7;
-    if (scan.current) scan.current.position.y = Math.sin(t * 1.1) * 1.15;
+    if (scan.current) scan.current.position.y = motion ? Math.sin(t * 1.1) * 1.15 : -1.4;
   });
 
   return (
@@ -234,7 +234,7 @@ export default function DossierScene({ member, tiltRef, motion }) {
         </mesh>
 
         {/* spinning icon hovering above the panel */}
-        <group ref={spin} position={[0, 1.62, 0.25]}>
+        <group ref={spin} position={[0, 1.52, 0.25]}>
           <IconMesh kind={member.icon} color={member.color} accent={member.accent} />
         </group>
       </group>

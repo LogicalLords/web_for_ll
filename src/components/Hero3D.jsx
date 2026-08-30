@@ -40,7 +40,8 @@ export default function Hero3D() {
   const cap = useDeviceCapability();
   const deferred = !cap.webgl || cap.reduced;
 
-  const bootRef = useRef({ shield: 0 });
+  // Start "sealed" for the boot animation; start open when motion is off.
+  const bootRef = useRef({ shield: !cap.webgl || cap.reduced ? 1 : 0 });
   const scanRef = useRef(null);
   const stampRef = useRef(null);
   const canvasWrap = useRef(null);
