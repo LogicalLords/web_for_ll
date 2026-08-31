@@ -1,0 +1,6 @@
+{
+  "name": "THE ALLIANCE — Six Minds. One Mission.",
+  "description": "A futuristic superhero command centre and technology alliance founded by six specialists building intelligent systems and immersive digital experiences.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
